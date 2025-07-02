@@ -3,11 +3,10 @@ kind: Component
 metadata:
   name: service-with-docs
   description: The place to be, for great artists
-  annotations:
-    backstage.io/techdocs-ref: dir:.
   labels:
     example.com/custom: custom_label_value
   annotations:
+    backstage.io/techdocs-ref: dir:.
     example.com/service-discovery: artistweb
     circleci.com/project-slug: github/example-org/artist-website
   tags:
