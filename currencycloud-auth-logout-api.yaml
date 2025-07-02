@@ -1,0 +1,34 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: currencycloud-logout
+  description: CurrencyCloud Close Session API using X-Auth-Token header
+  tags:
+    - auth
+    - logout
+    - currencycloud
+spec:
+  type: openapi
+  lifecycle: production
+  owner: your-team
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: CurrencyCloud Close Session API
+      version: 1.0.0
+    paths:
+      /v2/authenticate/close_session:
+        post:
+          summary: Ends the current authenticated session
+          parameters:
+            - name: X-Auth-Token
+              in: header
+              required: true
+              description: Authentication token issued at login
+              schema:
+                type: string
+          responses:
+            '200':
+              description: Session closed successfully
+            '401':
+              description: Invalid or expired token
