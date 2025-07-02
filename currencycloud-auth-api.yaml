@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: currencycloud-auth
+  description: Login API for CurrencyCloud authentication
+  tags:
+    - auth
+    - currencycloud
+    - rest
+spec:
+  type: openapi
+  lifecycle: production
+  owner: your-team-name
+  definition:
+    $url: https://devapi.currencycloud.com/v2/openapi.json
