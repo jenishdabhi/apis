@@ -2,10 +2,10 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: currencycloud-auth-login
-  description: CurrencyCloud Close Session API using X-Auth-Token header
+  description: CurrencyCloud Login API using formData (login_id + api_key)
   tags:
     - auth
-    - logout
+    - rest
     - currencycloud
 spec:
   type: openapi
@@ -14,21 +14,34 @@ spec:
   definition: |
     openapi: 3.0.0
     info:
-      title: CurrencyCloud Close Session API
+      title: CurrencyCloud Login API
       version: 1.0.0
+      description: |
+        This API allows users to authenticate to CurrencyCloud using `login_id` and `api_key`.
+    servers:
+      - url: https://devapi.currencycloud.com
     paths:
-      /v2/authenticate/close_session:
+      /v2/authenticate/api:
         post:
-          summary: Ends the current authenticated session
-          parameters:
-            - name: X-Auth-Token
-              in: header
-              required: true
-              description: Authentication token issued at login
-              schema:
-                type: string
+          summary: Authenticate via login_id and api_key
+          requestBody:
+            required: true
+            content:
+              application/x-www-form-urlencoded:
+                schema:
+                  type: object
+                  properties:
+                    login_id:
+                      type: string
+                      description: Your CurrencyCloud login ID
+                    api_key:
+                      type: string
+                      description: Your CurrencyCloud API key
+                  required:
+                    - login_id
+                    - api_key
           responses:
             '200':
-              description: Session closed successfully
+              description: Successful login, returns auth token
             '401':
-              description: Invalid or expired token
+              description: Invalid credentials or unauthorized access
