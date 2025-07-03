@@ -17,7 +17,7 @@ spec:
       title: CurrencyCloud Login API
       version: 1.0.0
     paths:
-      /v2/authenticate/api:
+      https://devapi.currencycloud.com/v2/authenticate/api:
         post:
           summary: Authenticate via login_id and api_key
           requestBody:
