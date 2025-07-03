@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: currencycloud-logout
+  name: currencycloud-auth-login
   description: CurrencyCloud Close Session API using X-Auth-Token header
   tags:
     - auth
