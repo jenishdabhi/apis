@@ -1,41 +1,30 @@
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: currencycloud-auth-login
-  description: CurrencyCloud Login API using formData (login_id + api_key)
-  tags:
-    - auth
-    - rest
-    - currencycloud
-spec:
-  type: openapi
-  lifecycle: production
-  owner: your-team
-  definition: |
-    openapi: 3.0.0
-    info:
-      title: CurrencyCloud Login API
-      version: 1.0.0
-    paths:
-      https://devapi.currencycloud.com/v2/authenticate/api:
-        post:
-          summary: Authenticate via login_id and api_key
-          requestBody:
-            required: true
-            content:
-              application/x-www-form-urlencoded:
-                schema:
-                  type: object
-                  properties:
-                    login_id:
-                      type: string
-                    api_key:
-                      type: string
-                  required:
-                    - login_id
-                    - api_key
-          responses:
-            '200':
-              description: Successful login
-            '401':
-              description: Invalid credentials
+definition: |
+  openapi: 3.0.0
+  info:
+    title: CurrencyCloud Login API
+    version: 1.0.0
+  servers:
+    - url: https://devapi.currencycloud.com
+  paths:
+    /v2/authenticate/api:
+      post:
+        summary: Authenticate via login_id and api_key
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  login_id:
+                    type: string
+                  api_key:
+                    type: string
+                required:
+                  - login_id
+                  - api_key
+        responses:
+          '200':
+            description: Successful login
+          '401':
+            description: Invalid credentials
